@@ -1,52 +1,62 @@
-# Jasmin Metrics Client
+# jasmin-metrics-client
 
-A library to do requests to elastic search metric data
+`jasmin-metrics-client` is a Python package intended to provide a reusable client for working with JASMIN metrics data backed by Elasticsearch-style sources.
 
-## Getting started
+## Current status
 
-This Python library was created by CEDA's Backstage service, to begin working on your code you complete 
-the steps noted in this document. If you find any issues, please note them in this repo:
+This repository is currently in an early scaffold stage. The packaging, quality tooling, and documentation structure are in place, but the client surface itself is still minimal and not yet implemented as a full library.
 
-https://github.com/cedadev/ceda-github-python-library
+That means this repository is best treated as the foundation for a Python client package rather than a finished SDK.
 
-### Install Poetry
+## Stack
 
-This library will use the Poetry packaging system. To install Poetry you should follow these 
-instructions: https://python-poetry.org/docs/#installation
+- Python 3.9 to 3.13
+- Poetry
+- Pydantic Settings
+- STAC Pydantic
+- Ruff
+- Black
+- isort
+- mypy
+- Bandit
+- Xenon
+- Coverage
+- Sphinx
 
-### Install all Development Libraries
+## Repository structure
 
-Run `poetry install` to collect all relevant development libraries and create your `poetry.lock` file. 
-Alternatively you can run `poetry lock` which will a `poetry.lock`.
+```text
+jasmin_metrics_client/            Package source
+jasmin_metrics_client/tests/      Unit tests
+docs/                             Documentation sources
+pyproject.toml                    Packaging and tool configuration
+.pre-commit-config.yaml           Local quality checks
+```
 
-In both cases this lock file should be commited.
+## Development setup
 
-### Install the pre-commit hooks
+### Install dependencies
 
-Run `poetry run pre-commit install` to install the pre-commit hooks into this repository.
+```bash
+poetry install
+```
 
-### Activate GitHub workflows
+### Install pre-commit hooks
 
-You should change the name of the directory `.rename_github` to `.github` (note the full stops). 
-This will activate all GitHub quality assurance, documentation and module publication workflows. 
+```bash
+poetry run pre-commit install
+```
 
-At this point you can commit all your changes to ensure a fully working and quality assured repository.
+## Common commands
 
-### Activate Code Scanning on GitHub
+```bash
+poetry run python -m unittest discover jasmin_metrics_client/tests
+poetry run mypy jasmin_metrics_client
+poetry run ruff check .
+poetry run black --check .
+```
 
-You should activate `Default` "CodeQL analysis" on GitHub at the following link:
+## Notes
 
-https://github.com/cedadev/jasmin-metrics-client/settings/security_analysis
-
-### Create a PyPI project
-
-Create a project on PyPI for jasmin-metrics-client, you should also set up an integration with GitHub 
-if you have not done so already.
-
-## Other Configurations
-
-### Check your GitHub email settings (Optional)
-
-If your GitHub account does not make one of your email addresses visible, then commits to this
-(and future) libraries made with Backstage templates will not be linked to your GitHub account. 
-Backstage will automatically collect this information periodically.
+- The package metadata and tooling are configured, but the library implementation is still skeletal.
+- If you continue development here, the next step is to define the actual client API, request models, and metrics query workflows.
